@@ -60,7 +60,11 @@ module Liqpay
       form  = %Q(<form method="post" action="#{@host}3/checkout" accept-charset="utf-8">\n)
       form << %Q(<input type="hidden" name="data" value="#{json_params.to_s}" />\n)
       form << %Q(<input type="hidden" name="signature" value="#{signature.to_s}" />\n)
-      form << %Q(<input type="image" src="#{image}" name="btn_text" />\n</form>\n)
+      if params[:submit_class].presence
+        form << %Q(<input type="submit" name="btn_text" class="#{params[:submit_class]}"/>\n</form>\n)
+      else
+        form << %Q(<input type="image" src="#{image}" name="btn_text" />\n</form>\n)
+      end
     end # cnb_form
 
     def cnb_signature(params = {})
