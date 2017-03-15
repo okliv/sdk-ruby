@@ -52,7 +52,7 @@ subscriptions:
 liqpay = Liqpay::Liqpay.new
 liqpay.cnb_form({
                                :action         => 'subscribe',
-                               :amount         => amount,
+                               :amount         => 100500,
                                :currency       => 'USD',
                                :description    => 'description',
                                :order_id       => 'un1q_0rd3r_1d', #some order_id
