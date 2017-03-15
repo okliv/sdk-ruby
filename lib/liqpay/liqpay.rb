@@ -56,11 +56,11 @@ module Liqpay
       params[:public_key] = @public_key
       json_params = Coder.encode64 Coder.encode_json params
       signature = cnb_signature params
-
+      image = params[:button_image]||"//static.liqpay.com/buttons/p1#{language}.radius.png"
       form  = %Q(<form method="post" action="#{@host}3/checkout" accept-charset="utf-8">\n)
       form << %Q(<input type="hidden" name="data" value="#{json_params.to_s}" />\n)
       form << %Q(<input type="hidden" name="signature" value="#{signature.to_s}" />\n)
-      form << %Q(<input type="image" src="//static.liqpay.com/buttons/p1#{language}.radius.png" name="btn_text" />\n</form>\n)
+      form << %Q(<input type="image" src="#{image}" name="btn_text" />\n</form>\n)
     end # cnb_form
 
     def cnb_signature(params = {})
